@@ -23,14 +23,15 @@ class Snake:
         self.length += 1
 
     def snake(self, pygame, screen, GREEN, vector):
-        for i in range(self.length):
+        pygame.draw.rect(screen, GREEN, (self.x, self.y, 20, 20))
+        for i in range(1, self.length):
             if vector == 'w':
-                pygame.draw.rect(screen, GREEN, (self.x, self.y - i * 21, 20, 20))
-            elif vector == 's':
                 pygame.draw.rect(screen, GREEN, (self.x, self.y + i * 21, 20, 20))
+            elif vector == 's':
+                pygame.draw.rect(screen, GREEN, (self.x, self.y - i * 21, 20, 20))
             elif vector == 'a':
-                pygame.draw.rect(screen, GREEN, (self.x - i * 21, self.y, 20, 20))
+                pygame.draw.rect(screen, GREEN, (self.x + i * 21, self.y, 20, 20))
 
             elif vector == 'd':
-                pygame.draw.rect(screen, GREEN, (self.x + i * 21, self.y, 20, 20))
-            time.sleep(0.001)
+                pygame.draw.rect(screen, GREEN, (self.x - i * 21, self.y, 20, 20))
+            time.sleep(0.01)

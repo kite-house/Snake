@@ -23,11 +23,26 @@ class Snake:
         elif vector == 'd':
             self.x += 5
 
+    '''    food = food_img.get_rect(x=ex_food.x, y = ex_food.y)
+    screen.blit(food_img, food)'''
+
     def snake(self):
         snake_head = [self.x, self.y]
         self.snake_body.append(snake_head)
         for x in self.snake_body:
-            self.pygame.draw.rect(self.screen, GREEN, [x[0], x[1], 20, 20])
+            if self.snake_body.index(x) == 0:
+                tail_snake = tail_snake_img.get_rect(x=x[0], y = x[1])
+                self.screen.blit(tail_snake_img, tail_snake)
+
+            elif x == self.snake_body[-1]:
+                head_snake = head_snake_img.get_rect(x=x[0], y = x[1])
+                self.screen.blit(head_snake_img, head_snake)
+
+            else:
+                body_snake = body_snake_img.get_rect(x=x[0], y = x[1])
+                self.screen.blit(body_snake_img, body_snake)
+
+
             if len(self.snake_body) > self.length: 
                 del self.snake_body[0]   
 

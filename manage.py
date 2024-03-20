@@ -12,6 +12,7 @@ from reset import reset
 
 
 
+
 pygame.init()
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Snake")
@@ -20,15 +21,18 @@ pygame.display.set_caption("Snake")
 ex_food = Food(HEIGHT, WIDTH)
 snake = Snake(pygame, screen)
 menu.main_menu().mainloop(screen)
-
+bg.play(loops=1)
+bg.set_volume(0.3)
 def draw():
     screen.fill(BLACK) 
-    food = pygame.draw.rect(screen, RED, (ex_food.x, ex_food.y, 20, 20))
-    if food.x + 20 > snake.x > food.x - 20 and food.y + 20 > snake.y > food.y - 20:
+    food = food_img.get_rect(x=ex_food.x, y = ex_food.y)
+    screen.blit(food_img, food)
+    if food.x + SIZE > snake.x > food.x - SIZE and food.y + SIZE > snake.y > food.y - SIZE:
         ex_food.x = random.randrange(0, WIDTH, 5)
         ex_food.y = random.randrange(0, HEIGHT, 5) 
         snake.length += 1
-        
+        eat.play()
+
     snake.bord()
     snake.snake()
     snake.move(vector)
@@ -39,7 +43,10 @@ def draw():
 
     for i in snake.snake_body[:-1]:
         if i == [snake.x, snake.y]:
+            bg.stop()
+            game_over.play()
             snake.length = reset(screen ,snake.length)
+            bg.play()
     
 
     pygame.display.update()

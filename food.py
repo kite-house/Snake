@@ -1,4 +1,5 @@
 import random
+from settings import *
 
 class Food():
     def __init__(self, HEIGHT, WIDTH):

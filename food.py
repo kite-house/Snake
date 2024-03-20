@@ -2,5 +2,5 @@ import random
 
 class Food():
     def __init__(self, HEIGHT, WIDTH):
-        self.y = random.randrange(0, HEIGHT, 5)
-        self.x = random.randrange(0, WIDTH, 5)
+        self.y = random.randrange(10, HEIGHT - 10, 5)
+        self.x = random.randrange(10, WIDTH - 10, 5)

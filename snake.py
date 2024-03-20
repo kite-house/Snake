@@ -1,10 +1,14 @@
-import time
+from settings import *
 
 class Snake:
-    def __init__(self, WIDTH, HEIGHT):
+    def __init__(self, pygame, screen):
         self.y = HEIGHT // 2
         self.x = WIDTH // 2
         self.length = 1
+        self.snake_body = []
+
+        self.pygame = pygame
+        self.screen = screen
 
     def move(self, vector):
         if vector == 'w':
@@ -19,19 +23,28 @@ class Snake:
         elif vector == 'd':
             self.x += 5
 
-    def add_snake(self):
-        self.length += 1
+    def snake(self):
+        snake_head = [self.x, self.y]
+        self.snake_body.append(snake_head)
+        for x in self.snake_body:
+            self.pygame.draw.rect(self.screen, GREEN, [x[0], x[1], 20, 20])
+            if len(self.snake_body) > self.length: 
+                del self.snake_body[0]   
 
-    def snake(self, pygame, screen, GREEN, vector):
-        pygame.draw.rect(screen, GREEN, (self.x, self.y, 20, 20))
-        for i in range(1, self.length):
-            if vector == 'w':
-                pygame.draw.rect(screen, GREEN, (self.x, self.y + i * 21, 20, 20))
-            elif vector == 's':
-                pygame.draw.rect(screen, GREEN, (self.x, self.y - i * 21, 20, 20))
-            elif vector == 'a':
-                pygame.draw.rect(screen, GREEN, (self.x + i * 21, self.y, 20, 20))
+        for x in self.snake_body[:-1]:
+            if x == snake_head:
+                print('проигр')
 
-            elif vector == 'd':
-                pygame.draw.rect(screen, GREEN, (self.x - i * 21, self.y, 20, 20))
-            time.sleep(0.01)
+
+    def bord(self):
+        if self.x > WIDTH:
+            self.x = 0
+
+        elif self.x < 0:
+            self.x = WIDTH
+
+        elif self.y > HEIGHT:
+            self.y = 0
+
+        elif self.y < 0:
+            self.y = HEIGHT

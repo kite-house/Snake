@@ -23,8 +23,9 @@ def draw():
         food1.x = random.randrange(0, WIDTH, 5)
         food1.y = random.randrange(0, HEIGHT, 5) 
         snake.add_snake()
-    snake.move(vector)
+
     snake.snake(pygame, screen, GREEN, vector)
+    snake.move(vector)
     pygame.display.update()
 
 while True:

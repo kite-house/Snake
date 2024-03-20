@@ -23,9 +23,6 @@ class Snake:
         elif vector == 'd':
             self.x += 5
 
-    '''    food = food_img.get_rect(x=ex_food.x, y = ex_food.y)
-    screen.blit(food_img, food)'''
-
     def snake(self):
         snake_head = [self.x, self.y]
         self.snake_body.append(snake_head)

@@ -14,6 +14,35 @@
 # Управление 
 
 > W - Вверх.
+> 
 > S - Вниз.
+> 
 > A - Влево.
+> 
 > D - Вправо.
+> 
+
+
+# ENG
+
+The snake game, a reminder of the old Nokia days.
+
+# Tasks
+> The player controls the snake using the direction buttons — up, down, left, right.
+
+> The snake must collect food, for which points are awarded.
+
+> The goal of the game is to score as many points as possible.
+
+> The game ends if the snake crashes into a wall or into itself.
+
+# Management 
+
+> W - Up.
+> 
+> S - Down.
+> 
+> A - To the left.
+> 
+> D - To the right.
+> 

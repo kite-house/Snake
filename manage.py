@@ -7,9 +7,9 @@ from settings import *
 from snake import Snake
 from food import Food
 import random
-from menu import menu
-from reset import reset
-
+from modules.menu import Menu
+from modules.reset import reset
+from modules.display_score import display_score
 
 
 
@@ -20,7 +20,12 @@ pygame.display.set_caption("Snake")
 
 ex_food = Food(HEIGHT, WIDTH)
 snake = Snake(pygame, screen)
-menu.main_menu().mainloop(screen)
+snake2 = Snake(pygame, screen)
+
+snake2.x = 100
+snake2.y = 100
+
+Menu('main').launch(screen)
 bg.play(loops=1)
 bg.set_volume(0.3)
 def draw():
@@ -33,13 +38,9 @@ def draw():
         snake.length += 1
         eat.play()
 
-    snake.bord()
-    snake.snake()
-    snake.move(vector)
+    snake.snake(vector)
 
-    font_style = pygame.font.SysFont("Arial",size=25)
-    mes = font_style.render(f'Очки: {snake.length - 1}', True, WHITE)
-    screen.blit(mes, [10,10])
+    display_score(screen, 2)
 
     for i in snake.snake_body[:-1]:
         if i == [snake.x, snake.y]:
@@ -72,6 +73,6 @@ while True:
                 if vector != 'a':
                     vector = 'd'
             elif event.key == pygame.K_m:
-                menu.main_menu().mainloop(screen)
+                Menu('pause').launch(screen)
 
     pygame.time.Clock().tick(FPS)

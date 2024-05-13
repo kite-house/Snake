@@ -21,9 +21,9 @@ class Snake:
             self.x -= 5
 
         elif vector == 'd':
-            self.x += 5
+            self.x += 5    
 
-    def snake(self):
+    def snake(self, vector):
         snake_head = [self.x, self.y]
         self.snake_body.append(snake_head)
         for x in self.snake_body:
@@ -31,7 +31,7 @@ class Snake:
                 tail_snake = tail_snake_img.get_rect(x=x[0], y = x[1])
                 self.screen.blit(tail_snake_img, tail_snake)
 
-            elif x == self.snake_body[-1]:
+            elif x == self.snake_body[-1] and x != [0]:
                 head_snake = head_snake_img.get_rect(x=x[0], y = x[1])
                 self.screen.blit(head_snake_img, head_snake)
 
@@ -42,11 +42,9 @@ class Snake:
 
             if len(self.snake_body) > self.length: 
                 del self.snake_body[0]   
-
-        for x in self.snake_body[:-1]:
-            if x == snake_head:
-                print('проигр')
-
+        
+        self.bord()
+        self.move(vector)
 
     def bord(self):
         if self.x > WIDTH:
@@ -60,3 +58,5 @@ class Snake:
 
         elif self.y < 0:
             self.y = HEIGHT
+
+    

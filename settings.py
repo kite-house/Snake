@@ -2,7 +2,7 @@ import pygame
 
 # PARAM
 WIDTH, HEIGHT = 600, 400
-SIZE = 20
+SIZE = 25
 FPS = 60
 
 # COLOR
@@ -16,10 +16,23 @@ vector = None
 
 #Sprites
 pygame.init()
-food_img = pygame.transform.scale(pygame.image.load("particles/img/food.png"), (SIZE,SIZE))
 eat = pygame.mixer.Sound("particles/sounds/eat.mp3")
 game_over = pygame.mixer.Sound("particles/sounds/gameover.mp3")
 bg = pygame.mixer.Sound("particles/sounds/bg.mp3")
-head_snake_img = pygame.transform.scale(pygame.image.load("particles/img/head_snake.png"), (SIZE,SIZE))
-tail_snake_img = pygame.transform.scale(pygame.image.load("particles/img/tail_snake.png"), (SIZE,SIZE))
-body_snake_img = pygame.transform.scale(pygame.image.load("particles/img/body_snake.png"), (SIZE,SIZE))
+
+food_img = pygame.transform.scale(pygame.image.load("particles/img/food.png"), (SIZE,SIZE))
+
+head_snake = [
+    pygame.transform.scale(pygame.image.load("particles/img/headB.png"), (SIZE,SIZE)),
+    pygame.transform.scale(pygame.image.load("particles/img/headL.png"), (SIZE,SIZE)),
+    pygame.transform.scale(pygame.image.load("particles/img/headR.png"), (SIZE,SIZE)),
+    pygame.transform.scale(pygame.image.load("particles/img/headT.png"), (SIZE,SIZE))
+]
+body_snake = pygame.transform.scale(pygame.image.load("particles/img/body.png"), (SIZE,SIZE))
+
+tail_snake = [
+    pygame.transform.scale(pygame.image.load("particles/img/TailD.png"), (SIZE,SIZE)),
+    pygame.transform.scale(pygame.image.load("particles/img/TailL.png"), (SIZE,SIZE)),
+    pygame.transform.scale(pygame.image.load("particles/img/TailR.png"), (SIZE,SIZE)),
+    pygame.transform.scale(pygame.image.load("particles/img/TailU.png"), (SIZE,SIZE))
+]

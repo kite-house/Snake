@@ -1,6 +1,3 @@
-'''Создать прямоугольник с тенью. Тень должна находиться под наклоном. . 
-Прямоугольник с тенью должны двигаться при нажатии на кнопки клавиатуры W, A, S, D.'''
-
 import pygame
 import sys
 from settings import *
@@ -41,15 +38,19 @@ while True:
             if event.key == pygame.K_w:
                 if vector != 's' or snake.length == 1:
                     vector = 'w'
+                    
             elif event.key == pygame.K_s:
                 if vector != 'w' or snake.length == 1:
                     vector = 's'
+
             elif event.key == pygame.K_a:
                 if vector != 'd' or snake.length == 1:
                     vector = 'a'
+
             elif event.key == pygame.K_d:
                 if vector != 'a' or snake.length == 1:
                     vector = 'd'
+
             elif event.key == pygame.K_m:
                 Menu('pause').launch(screen)
 

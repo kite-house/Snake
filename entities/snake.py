@@ -6,6 +6,7 @@ class Snake:
         self.x = WIDTH // 2
         self.length = 1
         self.snake_body = []
+        self.turn = 0
 
         self.pygame = pygame
         self.screen = screen
@@ -13,31 +14,35 @@ class Snake:
     def move(self, vector):
         if vector == 'w':
             self.y -= 5
+            self.turn = 3
 
         elif vector == 's':
             self.y += 5
+            self.turn = 0
 
         elif vector == 'a':
             self.x -= 5
+            self.turn = 1
 
         elif vector == 'd':
             self.x += 5
+            self.turn = 2
 
     def snake(self, vector):
         snake_head = [self.x, self.y]
         self.snake_body.append(snake_head)
         for x in self.snake_body:
             if self.snake_body.index(x) == 0 and self.length > 2:
-                tail_snake = tail_snake_img.get_rect(x=x[0], y = x[1])
-                self.screen.blit(tail_snake_img, tail_snake)
+                tail_snake_rect = tail_snake[self.turn].get_rect(x=x[0], y = x[1])
+                self.screen.blit(tail_snake[self.turn], tail_snake_rect)
 
             elif x == self.snake_body[-1] or self.length == 1:
-                head_snake = head_snake_img.get_rect(x=x[0], y = x[1])
-                self.screen.blit(head_snake_img, head_snake)
+                head_snake_rect = head_snake[self.turn].get_rect(x=x[0], y = x[1])
+                self.screen.blit(head_snake[self.turn], head_snake_rect)
 
             else:
-                body_snake = body_snake_img.get_rect(x=x[0], y = x[1])
-                self.screen.blit(body_snake_img, body_snake)
+                body_snake_rect = body_snake.get_rect(x=x[0], y = x[1])
+                self.screen.blit(body_snake, body_snake_rect)
 
 
             if len(self.snake_body) > self.length: 
@@ -65,6 +70,6 @@ class Snake:
             if i == [self.x, self.y]:
                 bg.stop()
                 game_over.play()
-                self.length = reset(self.screen, self.length)
+                self.length = reset(self.screen)
                 bg.play()
         

@@ -1,5 +1,5 @@
 from settings import *
-
+from modules.reset import reset
 class Snake:
     def __init__(self, pygame, screen):
         self.y = HEIGHT // 2
@@ -21,17 +21,17 @@ class Snake:
             self.x -= 5
 
         elif vector == 'd':
-            self.x += 5    
+            self.x += 5
 
     def snake(self, vector):
         snake_head = [self.x, self.y]
         self.snake_body.append(snake_head)
         for x in self.snake_body:
-            if self.snake_body.index(x) == 0:
+            if self.snake_body.index(x) == 0 and self.length > 2:
                 tail_snake = tail_snake_img.get_rect(x=x[0], y = x[1])
                 self.screen.blit(tail_snake_img, tail_snake)
 
-            elif x == self.snake_body[-1] and x != [0]:
+            elif x == self.snake_body[-1] or self.length == 1:
                 head_snake = head_snake_img.get_rect(x=x[0], y = x[1])
                 self.screen.blit(head_snake_img, head_snake)
 
@@ -45,6 +45,7 @@ class Snake:
         
         self.bord()
         self.move(vector)
+        self.gameover()
 
     def bord(self):
         if self.x > WIDTH:
@@ -59,4 +60,11 @@ class Snake:
         elif self.y < 0:
             self.y = HEIGHT
 
-    
+    def gameover(self):
+        for i in self.snake_body[:-1]:
+            if i == [self.x, self.y]:
+                bg.stop()
+                game_over.play()
+                self.length = reset(self.screen, self.length)
+                bg.play()
+        

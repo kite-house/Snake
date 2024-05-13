@@ -16,10 +16,10 @@ vector = None
 
 #Sprites
 pygame.init()
-food_img = pygame.transform.scale(pygame.image.load("img/food.png"), (SIZE,SIZE))
-eat = pygame.mixer.Sound("sounds\eat.mp3")
-game_over = pygame.mixer.Sound("sounds\gameover.mp3")
-bg = pygame.mixer.Sound("sounds/bg.mp3")
-head_snake_img = pygame.transform.scale(pygame.image.load("img/head_snake.png"), (SIZE,SIZE))
-tail_snake_img = pygame.transform.scale(pygame.image.load("img/tail_snake.png"), (SIZE,SIZE))
-body_snake_img = pygame.transform.scale(pygame.image.load("img/body_snake.png"), (SIZE,SIZE))
+food_img = pygame.transform.scale(pygame.image.load("particles/img/food.png"), (SIZE,SIZE))
+eat = pygame.mixer.Sound("particles/sounds/eat.mp3")
+game_over = pygame.mixer.Sound("particles/sounds/gameover.mp3")
+bg = pygame.mixer.Sound("particles/sounds/bg.mp3")
+head_snake_img = pygame.transform.scale(pygame.image.load("particles/img/head_snake.png"), (SIZE,SIZE))
+tail_snake_img = pygame.transform.scale(pygame.image.load("particles/img/tail_snake.png"), (SIZE,SIZE))
+body_snake_img = pygame.transform.scale(pygame.image.load("particles/img/body_snake.png"), (SIZE,SIZE))
